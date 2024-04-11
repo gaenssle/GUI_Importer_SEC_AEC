@@ -7,14 +7,14 @@
 ## Set colors for window
 class Colors():
 	def __init__(self):
-		self.col_folder = '#003380'
-		self.col_files = '#0066ff'
-		self.col_export = '#80b3ff'
+		self.col_main = "#80b3ff"
+		self.col_sub = "#0066ff"
+		self.col_accent = "#003380"
 		self.button = "#bdccdb"
-		self.header = "#ffcc00"
+		self.heading = "#ffcc00"
 		self.main = "#5377ac"
-		self.alternate = "#998566"
-		self.footnote = "white"
+		self.accent = "#998566"
+		self.note = "white"
 
 
 ## ============================================================================
@@ -30,8 +30,8 @@ class Formatting():
 		self.ipadx = 2
 		self.ipady = 2
 		self.display_height = 3
-		self.font_header = ('Verdana', 11, "bold")
-		self.font_text = ('Verdana', 9)
-		self.font_export = ('Verdana', 9, "bold")
-		self.font_footnote = ('Verdana', 8)
+		self.font_heading = ("Verdana", 11, "bold")
+		self.font_subheading = ("Verdana", 9, "bold")
+		self.font_text = ("Verdana", 9)
+		self.font_note = ("Verdana", 8)
 		self.sticky = "ew"

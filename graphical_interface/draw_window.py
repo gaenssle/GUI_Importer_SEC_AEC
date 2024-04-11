@@ -23,14 +23,19 @@ class Counter():
 def draw_frame(frames):
 	counter = Counter()	
 	for frame in frames:
-		frame.grid(row=0, column=counter.add(), sticky="nsew")
+		frame.grid(
+					row=0, 
+					column=counter.add(), 
+					sticky="nsew"
+					)
 		frame.columnconfigure(0, weight=1)
 		# frame.grid_propagate(0)
 
 ## ===========================================================================
 ## Draw widgets for window (generalize formatting)
-def draw_widget(widgets, formatting):
+def draw_widget(widgets, formatting, add=0):
 	counter = Counter()
+	counter.add(add)
 	for widget in widgets:
 		sticky = formatting.sticky
 		row = counter.add()
@@ -45,7 +50,39 @@ def draw_widget(widgets, formatting):
 			padx = (0, padx)
 		elif isinstance(widget, tk.Listbox):
 			padx = (padx, 0)
-		widget.grid(row=row, column=column, sticky=sticky, 
-			padx=padx, pady=formatting.pady*widgets[widget], ipadx=formatting.ipadx, ipady=formatting.ipady)
+		widget.grid(
+					row=row, 
+					column=column, 
+					sticky=sticky, 
+					padx=padx, 
+					pady=formatting.pady*widgets[widget],
+					ipadx=formatting.ipadx, 
+					ipady=formatting.ipady
+					)
 		if isinstance(widget, tk.LabelFrame):
 			widget.grid_columnconfigure(0, weight=1)
+
+def draw_form(form_dict, window, formatting, add=0):
+	counter = Counter()
+	counter.add(add)	
+	for label in form_dict:
+		row = counter.add()
+		tk.Label(
+				window, 
+				text=label, 
+				font=formatting.font_text
+				).grid(
+					row=row, 
+					column=0, 
+					sticky = "w", 
+					padx=formatting.padx
+					)
+		tk.Entry(
+				window, 
+				textvariable=form_dict[label], 
+				font=formatting.font_text
+				).grid(
+					row=row, 
+					column=1, 
+					padx=formatting.padx
+					)

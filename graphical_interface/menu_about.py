@@ -38,7 +38,7 @@ OVERALL REQUIREMENTS:
 
 ## ===========================================================================
 ## Show info about the program
-def about_program(window, font_header, font_text):
+def about_program(window, font_heading, font_text):
 	window_about = tk.Toplevel(window)
 	window_about.title("About this program")
 	window_about.geometry("600x300")
@@ -46,7 +46,7 @@ def about_program(window, font_header, font_text):
 	tk.Label(
 			window_about, 
 			text ="SEC IMPORTER", 
-			font=font_header
+			font=font_heading
 			).pack()
 
 	show_info = tkinter.scrolledtext.ScrolledText(
@@ -55,4 +55,4 @@ def about_program(window, font_header, font_text):
 				font=font_text)
 	show_info.pack()
 	show_info.insert("end", program_info)
-	show_info.config(state='disabled')
+	show_info.config(state="disabled")

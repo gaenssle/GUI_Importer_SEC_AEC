@@ -10,7 +10,7 @@
 class DefaultValues():
 	def __init__(self):
 		# Encoding of the raw data files
-		self.file_encoding = 'cp1252'
+		self.file_encoding = "cp1252"
 
 		# Marker lines used to split the raw data
 		self.info_stop = "Calibration Coefficients:\n"
