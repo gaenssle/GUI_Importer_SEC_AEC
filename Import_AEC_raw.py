@@ -12,10 +12,10 @@ from script.graphical_interface import formatting
 from script.graphical_interface import draw_window
 from script.graphical_interface.file_selection import FileSelection
 
-from script.import_size_exclusion import menu_about
-from script.import_size_exclusion import menu_change_markers
-from script.import_size_exclusion.main_script import export_data
-from script.import_size_exclusion.default_values import DefaultValues
+from script.import_anion_exchange import menu_about
+from script.import_anion_exchange import menu_change_markers
+from script.import_anion_exchange.main_script import export_data
+from script.import_anion_exchange.default_values import DefaultValues
 
 
 # Create class objects
@@ -109,10 +109,10 @@ def rename_files(file_list_string):
 	tkinter.messagebox.showinfo("Renamed files", f"Renamed {count} files")
 
 # Conduct importing, combining and exporting of files
-def export_size_exclusion_data():
+def export_anion_exchange_data():
 	files.file_name = entry_file_name.get()
 	message = export_data(files, default_values, export_info.get(), 
-							export_raw.get(), export_elute.get())
+							export_raw.get())
 	if message["m_type"] == "info":
 		tkinter.messagebox.showinfo(message["title"], message["message"])
 	else:
@@ -124,7 +124,7 @@ def export_size_exclusion_data():
 ## ===========================================================================
 ## Create window
 window = tk.Tk()
-window.title("Export SEC/GPC raw data files")
+window.title("Export AEC raw data files")
 window.resizable(False, False)
 
 
@@ -283,7 +283,6 @@ draw_window.draw_widget(widgets, formatting)
 file_name = tk.StringVar(value=files.file_name)
 export_info = tk.BooleanVar()
 export_raw = tk.BooleanVar()
-export_elute = tk.BooleanVar()
 
 ## Header
 lab_col_export = tk.Label(col_export, 
@@ -320,19 +319,14 @@ check_raw = tk.Checkbutton(col_export,
 							variable=export_raw, 
 							bg=colors.col_main, 
 							font=formatting.font_text)
-check_elute = tk.Checkbutton(col_export, 
-							text="Elution data", 
-							variable=export_elute, 
-							bg=colors.col_main, 
-							font=formatting.font_text)
+
 check_info.select()
 check_raw.select()
-check_elute.select()
 
 ## Conduct export
 button_export = tk.Button(col_export, 
 						text="EXPORT DATA!", 
-						command=export_size_exclusion_data, 
+						command=export_anion_exchange_data, 
 						bg=colors.accent, 
 						font=formatting.font_subheading)
 
@@ -345,7 +339,6 @@ widgets = {
 			lab_file_column:1, 
 			check_info:0, 
 			check_raw:0, 
-			check_elute:0, 
 			button_export:2
 			}
 draw_window.draw_widget(widgets, formatting)

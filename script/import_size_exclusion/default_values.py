@@ -12,6 +12,9 @@ class DefaultValues():
 		# Encoding of the raw data files
 		self.file_encoding = "cp1252"
 
+		# Extract sample name from the line starting with this string
+		self.sample_line = "Sample :"
+
 		# Marker lines used to split the raw data
 		self.info_stop = "Calibration Coefficients:\n"
 		self.raw_start = "RAWstart :\n"

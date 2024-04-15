@@ -28,14 +28,33 @@ def export_data(files, default_values, export_info, export_raw, export_elute):
 			part_info, part_raw, part_elution = functions.split_file(
 					os.path.join(files.input_path, file), default_values)
 		except:
-			return {"m_type":"warning", "title":"Incorrect data", "message":"Could not import data!\nPlease check the marker lines in your input files \n(--> see 'Configure')"}
+			return {"m_type":"warning", 
+					"title":"Incorrect data", 
+					"message":"Could not import data!\nPlease check the marker lines in your input files \n(--> see 'Configure')"}
 
 		# Extract and combine data
+		try:
+			name, info = functions.extract_info(part_info, default_values.sample_line,
+				default_values.info_keys)
+		except:
+			return {"m_type":"warning", 
+					"title":"Incorrect data", 
+					"message":"Could not extract info!\nPlease check if the line for the sample name is correct\n(--> see 'Configure')"}
+		
+		try:
+			raw = functions.extract_data(part_raw, default_values.raw_column)
+		except:
+			return {"m_type":"warning", 
+					"title":"Incorrect data", 
+					"message":"Could not extract raw data!\nPlease check if the column and number format are correct\n(--> see 'Configure')"}
 
-		name, info = functions.extract_info(part_info, 
-			default_values.info_keys)
-		raw = functions.extract_data(part_raw, default_values.raw_column)
-		elution = functions.extract_data(part_elution, default_values.elu_column)
+		try:
+			elution = functions.extract_data(part_elution, default_values.elu_column)
+		except:
+			return {"m_type":"warning", 
+					"title":"Incorrect data", 
+					"message":"Could not extract info!\nPlease check if the column and number format are correct\n(--> see 'Configure')"}
+					
 		information.update({name:info})
 		raw_data.update({name:raw})
 		elution_data.update({name:elution})

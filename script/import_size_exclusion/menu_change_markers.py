@@ -6,7 +6,9 @@
 import tkinter as tk
 import tkinter.messagebox
 
-from .draw_window import draw_form
+import sys
+sys.path.append('.')
+from script.graphical_interface.draw_window import draw_form
 
 ## ===========================================================================
 ## Offer a way to temporarily change the default values with an entry mask
@@ -31,6 +33,8 @@ def change_markers(window, default_values, formatting):
 	## Submit the changes to alter the default values ------------------------
 	def submit_marker_change():
 		if validate_integer():
+			update_markers(default_values.file_encoding, file_encoding)
+			update_markers(default_values.sample_line, sample_line)
 			update_markers(default_values.info_stop, marker_info_stop)
 			update_markers(default_values.raw_start, marker_raw_start)
 			update_markers(default_values.raw_stop, marker_raw_stop)
@@ -75,6 +79,8 @@ If you want to change them permanently, copy-paste the program files, and edit t
 	show_info.config(state="disabled")
 
 	# Create variables for the entry widgests
+	file_encoding = tk.StringVar(value=default_values.file_encoding)
+	sample_line = tk.StringVar(value=default_values.sample_line)
 	marker_info_stop = tk.StringVar(value=default_values.info_stop)
 	column_raw_data = tk.StringVar(value=default_values.raw_column+1)
 	marker_raw_start = tk.StringVar(value=default_values.raw_start)
@@ -85,6 +91,8 @@ If you want to change them permanently, copy-paste the program files, and edit t
 
 	# List all markers and show current in the entry widgets
 	form_dict = {
+		"Encoding of input files": file_encoding,
+		"Start of line to import sample name:": sample_line,
 		"Information: stop marker": marker_info_stop,
 		"Raw data: column with RI values": column_raw_data,
 		"Raw data: start marker": marker_raw_start,
@@ -108,3 +116,5 @@ If you want to change them permanently, copy-paste the program files, and edit t
 					padx=formatting.padx, 
 					pady=formatting.pady
 					)
+
+

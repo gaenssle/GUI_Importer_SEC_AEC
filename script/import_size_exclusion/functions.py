@@ -31,10 +31,10 @@ def split_file(file_path, default_values):
 
 ## ===========================================================================
 ## Extracts information from the calibration and peak analysis
-def extract_info(file_part, info_values):
+def extract_info(file_part, sample_line, info_values):
 	data = {}
 	for line in file_part:
-		if line.startswith("Sample"):
+		if line.startswith(sample_line):
 			name = line.split(":",2)[2].rsplit("-",1)[0].strip()
 		elif line.startswith(info_values):
 			key, value = line.split(":",1)
