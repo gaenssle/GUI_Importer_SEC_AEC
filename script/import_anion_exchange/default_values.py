@@ -13,7 +13,7 @@ class DefaultValues():
 		self.file_encoding = "cp1252"
 
 		# Extract sample name from the line starting with this string
-		self.sample_line = "Injection\t"
+		self.sample_line = "Name\t"
 
 		# Marker lines used to split the raw data
 		self.info_stop = "Signal Parameter Information:\n"

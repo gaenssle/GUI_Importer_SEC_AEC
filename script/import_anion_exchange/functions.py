@@ -31,6 +31,7 @@ def extract_info(file_part, sample_line, info_values):
 	for line in file_part:
 		if line.startswith(sample_line):
 			name = line.split("\t",1)[1].strip()
+			name = name.replace(" ", "_")
 		elif line.startswith(info_values):
 			key, value = line.strip().split("\t",1)
 			key = key.strip()
